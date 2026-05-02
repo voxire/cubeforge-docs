@@ -193,7 +193,7 @@ export default defineConfig({
     search: { provider: 'local' },
     footer: {
       message: 'MIT License',
-      copyright: 'Copyright © 2025 1homsi',
+      copyright: 'Copyright © 2025 1homsi - Built by <a href="https://voxire.com" target="_blank">Voxire</a>',
     },
   },
 })
