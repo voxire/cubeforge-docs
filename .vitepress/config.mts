@@ -38,6 +38,7 @@ export default defineConfig({
           items: [
             { text: 'DevTools & Deterministic Mode', link: '/guide/devtools' },
             { text: 'Renderer (WebGL2)', link: '/guide/renderer' },
+            { text: 'Data-Driven Games', link: '/guide/data-driven-games' },
             { text: 'Performance', link: '/guide/performance' },
             { text: 'Migration Guide', link: '/guide/migration' },
             { text: 'Multiplayer', link: '/guide/multiplayer' },
@@ -73,6 +74,8 @@ export default defineConfig({
             { text: 'MovingPlatform', link: '/api/moving-platform' },
             { text: 'Checkpoint', link: '/api/checkpoint' },
             { text: 'Tilemap', link: '/api/tilemap' },
+            { text: 'TileLayer', link: '/api/tile-layer' },
+            { text: 'SpriteLayer', link: '/api/sprite-layer' },
             { text: 'ScreenFlash', link: '/api/screen-flash' },
             { text: 'VirtualJoystick', link: '/api/virtual-joystick' },
             { text: 'AssetLoader', link: '/api/asset-loader' },

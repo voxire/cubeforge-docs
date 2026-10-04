@@ -2,6 +2,25 @@
 
 Cubeforge is designed to handle hundreds of entities at 60 FPS out of the box. This guide covers what to watch for and how to keep your game fast as it grows.
 
+## What costs what
+
+Headless CPU numbers from `pnpm bench` (Node, no GPU; your frame also pays GPU
+time and the browser's compositing).
+
+| Work | Cost per frame |
+|---|---|
+| Sprite entity (`<Entity>` + `<Sprite>`) | ~0.1 µs render CPU (3,000 ≈ 0.3 ms); sort only when layer/z/texture change |
+| `SpriteLayer` sprite | ~0.02 µs (3,000 ≈ 0.06 ms) |
+| `TileLayer` | ~0.01 ms regardless of size; `setTile` uploads only the touched region |
+| `useDynamicCanvas` | 0 unless marked dirty; then the dirty rect only (`markDirty(x, y, w, h)`) |
+| React prop change on an entity | A React re-render plus an effect per changed component; avoid for per-frame motion |
+| Dynamic physics body | ~6 µs in a dense 1,000-body pile; enable sleeping (`sleepThreshold`) for resting bodies |
+| ECS `query()` | Cached; recomputed only when an entity gains or loses one of the queried types |
+| Text entity | Cached texture per unique string/style (LRU of 512); a new string renders a canvas |
+
+Per-frame motion belongs in a `Script`, a `SpriteLayer`, or direct component
+mutation, not in React props. Add `<StatsOverlay />` to see the live numbers.
+
 ## Entity count
 
 The ECS can hold thousands of entities, but every entity with a `RigidBody` and `BoxCollider` adds to the physics workload. General guidelines:
